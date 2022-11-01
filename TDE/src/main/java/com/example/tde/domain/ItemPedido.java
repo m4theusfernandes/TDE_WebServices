@@ -1,14 +1,16 @@
 package com.example.tde.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+
+import javax.persistence.EmbeddedId;
+
+
 import javax.validation.constraints.NotNull;
 
 
 public class ItemPedido {
 
-    //?
+    @EmbeddedId
+    private ItemPedidoPk id;
 
     private Double desconto;
 
@@ -17,6 +19,8 @@ public class ItemPedido {
 
     @NotNull
     private Double preco;
+
+
 
     public ItemPedido(Double desconto, Integer quantidade, Double preco) {
         this.desconto = desconto;

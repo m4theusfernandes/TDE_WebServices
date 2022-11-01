@@ -5,6 +5,8 @@ import com.example.tde.enums.EstadoPagamento;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 public class Pagamento {
@@ -15,6 +17,14 @@ public class Pagamento {
 
     @NotNull
     private EstadoPagamento estado;
+
+    @OneToOne
+    @JoinColumn(name = "pgb_id")
+    private PagamentoBoleto pagamentoBoleto;
+
+    @OneToOne
+    @JoinColumn(name = "pgc_id")
+    private PagamentoCartao pagamentoCartao;
 
     public Pagamento(Integer id, EstadoPagamento estado) {
         this.id = id;

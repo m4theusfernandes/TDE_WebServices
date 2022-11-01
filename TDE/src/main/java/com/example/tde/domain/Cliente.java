@@ -4,7 +4,7 @@ package com.example.tde.domain;
 import com.example.tde.enums.TipoCliente;
 import org.hibernate.validator.constraints.br.CPF;
 
-import javax.annotation.processing.Generated;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -37,11 +37,17 @@ public class Cliente {
     @CollectionTable(name = "telefone")
     private Set<String> telefone;
 
-    public Cliente(String nome, String email, String cpfOuCnpj, String tipo) {
+    @OneToMany(mappedBy = "pedido")
+    private List<Pedido> pedidos;
+
+    @OneToMany(mappedBy="endereco")
+    private List<Endereco> enderecos;
+
+
+    public Cliente(String nome, String email, String cpfOuCnpj) {
         this.nome = nome;
         this.email = email;
         this.cpfOuCnpj = cpfOuCnpj;
-        this.tipoCliente = tipoCliente;
     }
 
     public Cliente() {

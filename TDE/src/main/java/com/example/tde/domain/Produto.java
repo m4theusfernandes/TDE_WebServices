@@ -1,11 +1,9 @@
 package com.example.tde.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Collection;
 
 
 @Entity
@@ -23,6 +21,9 @@ public class Produto {
 
     @ManyToMany(mappedBy = "produtos")
     private List<Categoria> categorias;
+
+    @OneToMany
+    private Collection<ItemPedido> itemPedido;
 
     public Produto() {
     }

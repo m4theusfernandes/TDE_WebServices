@@ -14,10 +14,7 @@ public class Cidade {
     private String nome;
 
     @ManyToOne
-    @JoinColumn( name = "est_cidade",
-            joinColumns = @JoinColumn(name = "cid_id"),
-            inverseJoinColumns = @JoinColumn(name = "est_id");
-
+    @JoinColumn( name = "est_cidade")
     private Estado estado;
 
     public Cidade(Integer id, String nome) {

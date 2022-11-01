@@ -1,9 +1,17 @@
 package com.example.tde.domain;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class PagamentoBoleto {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+
     @NotNull
     private Date dataPagamento;
 

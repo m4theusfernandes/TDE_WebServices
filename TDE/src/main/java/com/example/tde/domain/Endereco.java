@@ -31,7 +31,7 @@ public class Endereco {
 
     @ManyToOne
     @JoinColumn(name = "cliente")
-     Cliente cliente;
+    private Cliente cliente;
 
     @OneToOne
     @JoinColumn(name = "cid_id")

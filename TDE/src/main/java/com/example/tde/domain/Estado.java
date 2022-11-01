@@ -14,7 +14,8 @@ public class Estado {
     @NotNull
     private String nome;
 
-    @ManyToOne(mapp= "cidade");
+    @ManyToOne
+    @JoinColumn(name = "est_id")
     private List<Cidade> cidades;
 
     public Estado(Integer id, String nome) {
