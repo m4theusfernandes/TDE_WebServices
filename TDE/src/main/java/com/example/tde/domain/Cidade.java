@@ -1,20 +1,24 @@
 package com.example.tde.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
 public class Cidade {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NotNull
     private String nome;
+
+    @ManyToOne
+    @JoinColumn( name = "est_cidade",
+            joinColumns = @JoinColumn(name = "cid_id"),
+            inverseJoinColumns = @JoinColumn(name = "est_id");
+
+    private Estado estado;
 
     public Cidade(Integer id, String nome) {
         this.id = id;

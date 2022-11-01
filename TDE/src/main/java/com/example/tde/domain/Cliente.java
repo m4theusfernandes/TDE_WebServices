@@ -1,21 +1,21 @@
 package com.example.tde.domain;
 
 
+import com.example.tde.enums.TipoCliente;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.annotation.processing.Generated;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Cliente {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
@@ -27,17 +27,24 @@ public class Cliente {
     @CPF
     private String cpfOuCnpj;
 
-    @NotNull
-    private String tipo;
+    @Enumerated(EnumType.ORDINAL)
+    private TipoCliente tipoCliente;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Endereco> endereco;
+
+    @ElementCollection
+    @CollectionTable(name = "telefone")
+    private Set<String> telefone;
 
     public Cliente(String nome, String email, String cpfOuCnpj, String tipo) {
         this.nome = nome;
         this.email = email;
         this.cpfOuCnpj = cpfOuCnpj;
-        this.tipo = tipo;
+        this.tipoCliente = tipoCliente;
     }
 
-    public Cliente(){
+    public Cliente() {
 
     }
 
@@ -73,11 +80,12 @@ public class Cliente {
         this.cpfOuCnpj = cpfOuCnpj;
     }
 
-    public String getTipo() {
-        return tipo;
+    public TipoCliente getTipoCliente() {
+        return tipoCliente;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setTipoCliente(TipoCliente tipoCliente) {
+        this.tipoCliente = tipoCliente;
     }
 }
+

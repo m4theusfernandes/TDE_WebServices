@@ -1,8 +1,5 @@
-package com.example.tde.domain;
+package com.example.tde.enums;
 
-import lombok.Getter;
-
-@Getter
 public enum EstadoPagamento {
     APROVADO(0,"Aprovado"),
     REPROVADO(1,"Reprovado"),
