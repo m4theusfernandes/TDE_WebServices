@@ -1,6 +1,5 @@
 package com.example.tde.domain;
 
-import org.opensingular.requirement.connector.sei30.ws.Cidade;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
@@ -12,29 +11,18 @@ public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotNull
     private String logradouro;
-
-    @NotNull
-    @NumberFormat
     private String numero;
-
-    @NotNull
     private String complemento;
-
-    @NotNull
     private String bairro;
-
-    @NotNull
     private String cep;
 
     @ManyToOne
-    @JoinColumn(name = "cliente")
+    @JoinColumn(name = "cli_id")
     private Cliente cliente;
 
     @OneToOne
-    @JoinColumn(name = "cid_id")
+    @JoinColumn(name="cid_id")
     private Cidade cidade;
 
     public Endereco (){

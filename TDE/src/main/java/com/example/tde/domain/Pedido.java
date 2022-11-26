@@ -1,50 +1,30 @@
 package com.example.tde.domain;
 
+import org.joda.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.*;
 
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+@Entity
 public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    private LocalDate instante;
 
-    @ManyToOne
-    @JoinColumn(name="cli_id")
-    private Cliente cliente;
+    @OneToOne
+    @JoinColumn(name = "pag_id")
+    private Pagamento pagamento;
 
-    @DateTimeFormat
-    @NotNull
-    private Date instante;
-
-    @OneToMany
-    private Collection<ItemPedido> itemPedido;
-
-
-    @ManyToOne
-    @JoinColumn(name = "cli_id")
-    private List<Cliente> clientes;
-
-
-    public Pedido() {
-    }
-
-    public Pedido(Integer id, Date instante) {
-        this.id = id;
-        this.instante = instante;
-    }
+    @OneToMany(mappedBy = "id.pedido")
+    private List<ItemPedido> itens;
 
     public Integer getId() {
         return id;
@@ -54,11 +34,37 @@ public class Pedido {
         this.id = id;
     }
 
-    public Date getInstante() {
+    public LocalDate getInstante() {
         return instante;
     }
 
-    public void setInstante(Date instante) {
+    public void setInstante(LocalDate instante) {
         this.instante = instante;
+    }
+
+    public Pagamento getPagamento() {
+        return pagamento;
+    }
+
+    public void setPagamento(Pagamento pagamento) {
+        this.pagamento = pagamento;
+    }
+
+    public List<ItemPedido> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<ItemPedido> itens) {
+        this.itens = itens;
+    }
+
+    public Pedido(Integer id, LocalDate instante, Pagamento pagamento, List<ItemPedido> itens) {
+        this.id = id;
+        this.instante = instante;
+        this.pagamento = pagamento;
+        this.itens = itens;
+    }
+
+    public Pedido() {
     }
 }

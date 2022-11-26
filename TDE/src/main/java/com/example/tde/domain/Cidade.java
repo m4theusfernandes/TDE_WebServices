@@ -10,11 +10,10 @@ public class Cidade {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
     private String nome;
 
     @ManyToOne
-    @JoinColumn( name = "est_cidade")
+    @JoinColumn(name = "uf")
     private Estado estado;
 
     public Cidade(Integer id, String nome) {

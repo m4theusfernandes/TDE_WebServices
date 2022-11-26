@@ -8,19 +8,18 @@ import java.util.List;
 public class Estado {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
     private String nome;
 
-    @ManyToOne
-    @JoinColumn(name = "est_id")
+    @OneToMany(mappedBy = "estado", orphanRemoval = true)
     private List<Cidade> cidades;
 
     public Estado(Integer id, String nome) {
         this.id = id;
         this.nome = nome;
+        
     }
 
     public Estado() {

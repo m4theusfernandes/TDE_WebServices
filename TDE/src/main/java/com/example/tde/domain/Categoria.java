@@ -1,5 +1,8 @@
 package com.example.tde.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -9,33 +12,34 @@ import java.util.List;
 public class Categoria {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-    @NotNull
+
     private String nome;
 
+    @JsonBackReference
     @ManyToMany
     @JoinTable(
             name = "prod_cat",
-            joinColumns = @JoinColumn(name = "cat_id"),
-            inverseJoinColumns = @JoinColumn(name = "prod_id")
+            joinColumns = @JoinColumn(name="prod_id"),
+            inverseJoinColumns = @JoinColumn(name = "cat_id")
     )
-    private List<Produto> produtos;
+    private List<Categoria> categorias;
 
     public Categoria() {
     }
 
-    public Categoria(Long id, String nome) {
+    public Categoria(Integer id, String nome) {
         this.id = id;
         this.nome = nome;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

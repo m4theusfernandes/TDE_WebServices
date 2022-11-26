@@ -2,33 +2,33 @@ package com.example.tde.domain;
 
 
 import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 
 
-import javax.validation.constraints.NotNull;
-
-
+@Entity
 public class ItemPedido {
 
     @EmbeddedId
     private ItemPedidoPk id;
 
-    private Double desconto;
+    public ItemPedido(Pedido pedido, Produto produto) {
+        this.id = new ItemPedidoPk(pedido, produto);
+    }
 
-    @NotNull
-    private Integer quantidade;
+    public ItemPedido(Pedido pedido, Produto produto, Double desconto, Integer quantidade, Double preco) {
+        this.id = new ItemPedidoPk(pedido, produto);
 
-    @NotNull
-    private Double preco;
-
-
-
-    public ItemPedido(Double desconto, Integer quantidade, Double preco) {
         this.desconto = desconto;
         this.quantidade = quantidade;
         this.preco = preco;
     }
 
+    private Double desconto;
+    private Integer quantidade;
+    private Double preco;
+
     public ItemPedido() {
+
     }
 
     public Double getDesconto() {
@@ -53,5 +53,13 @@ public class ItemPedido {
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    public Produto getProduto(){
+        return this.id.getProduto();
+    }
+
+    public Pedido getPedido(){
+        return this.id.getPedido();
     }
 }

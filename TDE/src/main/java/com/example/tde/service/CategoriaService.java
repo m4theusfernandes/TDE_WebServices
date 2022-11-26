@@ -15,7 +15,7 @@ public class CategoriaService {
     @Autowired
     private CategoriaRepository categoriaRepository;
 
-    public Categoria findById(Long id){
+    public Categoria findById(Integer id){
         return categoriaRepository.findById(id).orElseThrow(() -> new NotFoundException("Categoria não encontrada. id="+id));
     }
 
@@ -30,12 +30,16 @@ public class CategoriaService {
         categoriaRepository.saveAndFlush(categoria);
     }
 
-    public void deletePorId(Long id){
+    public void deletePorId(Integer id){
         if(!categoriaRepository.existsById(id)){
             throw new NotFoundException("Categoria não encontrada: id=" + id);
         }
 
         categoriaRepository.deleteById(id);
+    }
+
+    public java.util.List<Categoria> findAll() {
+        return null;
     }
 
 

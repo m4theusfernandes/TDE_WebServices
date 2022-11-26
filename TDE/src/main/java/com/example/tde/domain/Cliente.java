@@ -17,37 +17,29 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotNull
     private String nome;
-
-    @Email
     private String email;
-
-    @CPF
     private String cpfOuCnpj;
 
     @Enumerated(EnumType.ORDINAL)
     private TipoCliente tipoCliente;
 
-    @OneToMany(mappedBy = "cliente")
-    private List<Endereco> endereco;
-
     @ElementCollection
     @CollectionTable(name = "telefone")
-    private Set<String> telefone;
+    private Set<String> telefones;
 
-    @OneToMany(mappedBy = "pedido")
-    private List<Pedido> pedidos;
 
-    @OneToMany(mappedBy="endereco")
+    @OneToMany(mappedBy = "cliente")
     private List<Endereco> enderecos;
 
 
-    public Cliente(String nome, String email, String cpfOuCnpj) {
+    public Cliente(Long id,  String nome,  String email,  String cpfOuCnpj, TipoCliente tipoCliente, String string) {
+        this.id =  id;
         this.nome = nome;
         this.email = email;
         this.cpfOuCnpj = cpfOuCnpj;
+        this.tipoCliente = tipoCliente;
+
     }
 
     public Cliente() {

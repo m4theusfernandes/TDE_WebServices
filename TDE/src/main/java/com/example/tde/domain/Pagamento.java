@@ -2,52 +2,18 @@ package com.example.tde.domain;
 
 import com.example.tde.enums.EstadoPagamento;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Pagamento {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-
-    @NotNull
     private EstadoPagamento estado;
 
-    @OneToOne
-    @JoinColumn(name = "pgb_id")
-    private PagamentoBoleto pagamentoBoleto;
-
-    @OneToOne
-    @JoinColumn(name = "pgc_id")
-    private PagamentoCartao pagamentoCartao;
-
-    public Pagamento(Integer id, EstadoPagamento estado) {
-        this.id = id;
-        this.estado = estado;
-    }
-
-    public Pagamento() {
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public EstadoPagamento getEstado() {
-        return estado;
-    }
-
-    public void setEstado(EstadoPagamento estado) {
-        this.estado = estado;
-    }
+    @OneToOne(mappedBy = "pagamento")
+    private Pedido pedido;
 
 }

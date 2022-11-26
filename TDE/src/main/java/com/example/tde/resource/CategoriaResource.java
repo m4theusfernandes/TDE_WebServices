@@ -51,7 +51,7 @@ public class CategoriaResource {
         return null;
     }
 
-    public Class<?> obterPorId(Long id) {
+    public Class<?> obterPorId(Integer integer) {
         return null;
     }
     

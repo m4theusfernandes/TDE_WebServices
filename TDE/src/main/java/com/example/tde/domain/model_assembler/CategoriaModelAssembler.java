@@ -1,6 +1,7 @@
 package com.example.tde.domain.model_assembler;
 
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkto;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 import javax.persistence.Entity;
 
@@ -17,8 +18,7 @@ public class CategoriaModelAssembler implements RepresentationModelAssembler<Cat
     public EntityModel<Categoria> toModel(Categoria categoria){
         EntityModel<Categoria> entityModelCategoria = EntityModel.of(categoria);
 
-        entityModelCategoria.add( linkTo(methodOn(CategoriaResource.class).obterPorId(cliente.getId())).withSelfRel());
-
+        entityModelCategoria.add( linkTo(methodOn(CategoriaResource.class).obterPorId(categoria.getId())).withSelfRel());
 
         return entityModelCategoria;
     }
