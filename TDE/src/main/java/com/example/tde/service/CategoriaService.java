@@ -30,9 +30,9 @@ public class CategoriaService {
         categoriaRepository.saveAndFlush(categoria);
     }
 
-    public void deletePorId(Integer id){
+    public void deletePorId(Integer id) {
         if(!categoriaRepository.existsById(id)){
-            throw new NotFoundException("Categoria não encontrada: id=" + id);
+            throw new NotFoundException("Cliente não encontrado. id="+id);
         }
 
         categoriaRepository.deleteById(id);
@@ -41,7 +41,5 @@ public class CategoriaService {
     public java.util.List<Categoria> findAll() {
         return null;
     }
-
-
 
 }

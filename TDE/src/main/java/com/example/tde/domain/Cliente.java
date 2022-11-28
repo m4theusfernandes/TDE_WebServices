@@ -16,7 +16,7 @@ public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String nome;
     private String email;
     private String cpfOuCnpj;
@@ -33,7 +33,7 @@ public class Cliente {
     private List<Endereco> enderecos;
 
 
-    public Cliente(Long id,  String nome,  String email,  String cpfOuCnpj, TipoCliente tipoCliente, String string) {
+    public Cliente(Integer id,  String nome,  String email,  String cpfOuCnpj, TipoCliente tipoCliente, String string) {
         this.id =  id;
         this.nome = nome;
         this.email = email;
@@ -46,11 +46,11 @@ public class Cliente {
 
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -80,6 +80,22 @@ public class Cliente {
 
     public TipoCliente getTipoCliente() {
         return tipoCliente;
+    }
+
+    public Set<String> getTelefones() {
+        return telefones;
+    }
+
+    public void setTelefones(Set<String> telefones) {
+        this.telefones = telefones;
+    }
+
+    public List<Endereco> getEnderecos() {
+        return enderecos;
+    }
+
+    public void setEnderecos(List<Endereco> enderecos) {
+        this.enderecos = enderecos;
     }
 
     public void setTipoCliente(TipoCliente tipoCliente) {

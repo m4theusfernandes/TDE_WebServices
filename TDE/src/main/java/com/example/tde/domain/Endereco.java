@@ -10,7 +10,7 @@ public class Endereco {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String logradouro;
     private String numero;
     private String complemento;
@@ -37,11 +37,11 @@ public class Endereco {
         this.cep = cep;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

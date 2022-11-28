@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,7 +26,13 @@ public class CategoriaResource {
 
     private CategoriaModelAssembler CategoriaModelAssembler;
 
-    @GetMapping
+    @GetMapping("/{id}")
+    public ResponseEntity<Categoria> obterPorId(@PathVariable("id") Integer id) {
+        Categoria categoria = this.categoriaService.findById(id);
+        return ResponseEntity.ok().body(categoria);
+    }
+
+    @GetMapping("/")
     public ResponseEntity<CollectionModel<EntityModel<Categoria>>> obterTodasCategorias(){
         List<Categoria> categoria = categoriaService.findAll();
         if(categoria.isEmpty()){
@@ -43,15 +51,17 @@ public class CategoriaResource {
 
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarClientePorId(@PathVariable("id") Integer id) {
+        categoriaService.deletePorId(id);
+        return ResponseEntity.noContent().build();
+    }
+
     private Object linkTo(ResponseEntity<CollectionModel<EntityModel<Categoria>>> obterTodasCategorias) {
         return null;
     }
 
     private CategoriaResource methodOn(Class<CategoriaResource> class1) {
-        return null;
-    }
-
-    public Class<?> obterPorId(Integer integer) {
         return null;
     }
     
