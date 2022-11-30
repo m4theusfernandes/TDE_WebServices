@@ -8,10 +8,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.joda.time.LocalDate;
 
 import com.example.tde.enums.EstadoPagamento;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity

@@ -1,12 +1,13 @@
 package com.example.tde.domain;
 
-import org.joda.time.LocalDate;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 
 import javax.validation.constraints.NotNull;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
